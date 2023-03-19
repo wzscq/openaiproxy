@@ -1,0 +1,8 @@
+{
+  "service":{
+    "port":"localhost:9180"
+  },
+  "openai":{
+    "key":"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"
+  }
+}
