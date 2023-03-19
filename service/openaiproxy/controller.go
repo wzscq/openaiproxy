@@ -30,7 +30,7 @@ func (opc *OpenAIProxyController)openAIV1ChatCompletions(c *gin.Context){
   }
 	
 	//调用openai接口
-	client := openai.NewClient("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")
+	client := openai.NewClient(opc.Key)
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
