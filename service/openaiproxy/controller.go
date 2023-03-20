@@ -55,6 +55,5 @@ func (opc *OpenAIProxyController)openAIV1ChatCompletions(c *gin.Context){
 }
 
 func (opc *OpenAIProxyController) Bind(router *gin.Engine) {
-	log.Println("Bind UserController")
 	router.POST("/openai/v1/chat/completions/GPT3Dot5Turbo", opc.openAIV1ChatCompletions)
 }
