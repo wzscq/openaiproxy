@@ -1,4 +1,4 @@
-package openaiproxy
+package openai
 
 import (
 	"github.com/gin-gonic/gin"

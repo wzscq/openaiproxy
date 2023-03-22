@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
 	"openaiproxy/common"
-	"openaiproxy/openaiproxy"
+	"openaiproxy/openai"
 )
 
 func main() {
@@ -36,7 +36,7 @@ func main() {
 	}))
 
 	//初始化openai代理控制器
-	openaiProxyController:=openaiproxy.OpenAIProxyController{Key:conf.OpenAI.Key}
+	openaiProxyController:=openai.OpenAIProxyController{Key:conf.OpenAI.Key}
 
 	//绑定路由
 	openaiProxyController.Bind(router)
