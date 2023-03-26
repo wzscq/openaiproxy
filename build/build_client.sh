@@ -19,6 +19,6 @@ if [ -e package/web/client ]; then
   rm -rf package/web/client
 fi
 
-mv ../formview/build ./package/web/client
+mv ../client/build ./package/web/client
 
 echo client build over.

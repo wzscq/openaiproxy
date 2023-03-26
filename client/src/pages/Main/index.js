@@ -19,8 +19,12 @@ const horizontalResizerOptions={
   grabberSize: '2px',
 }
 
+const initialRecords=[
+  {content:'你好，我是万能的小助理，有什么需要我帮忙处理的问题请在下方问题框中输入后点击右下角的蓝色发送按钮，我将立即帮您处理',role:'assistant'}
+];  
+
 export default function Main(){
-  const [records,setRecords]=useState([]);
+  const [records,setRecords]=useState(initialRecords);
 
   const onSend=(text)=>{
     let newRecords=[...records,{content:text,role:'user'}];
@@ -32,7 +36,7 @@ export default function Main(){
     chatCompleteProxy(newRecords).then((content)=>{
       setRecords([...newRecords,{content,role:'assistant'}]);
     });
-    setRecords([...newRecords,{content:'思考中，请稍等 ...',role:'assistant'}]);
+    setRecords([...newRecords,{content:'正在处理您的请求，请稍等 ...',role:'assistant'}]);
   }
 
   return (

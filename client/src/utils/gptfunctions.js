@@ -1,7 +1,8 @@
 import axios from "axios";
 
 //chatproxy
-const chatProxyApi="/openaiproxy/openai/v1/chat/completions/GPT3Dot5Turbo"
+const chatProxyApi=process.env.REACT_APP_OPENAI_HOST+"/openaiproxy/openai/v1/chat/completions/GPT3Dot5Turbo";
+console.log(chatProxyApi)
 const chatCompleteProxy=async (messages)=>{
   
   const reponse= await axios({
