@@ -24,9 +24,17 @@ export default function ChatInput({onSend}){
     }
   }
 
+  const onPressEnter=(e)=>{
+    if(e.shiftKey!==true){
+      sendMessage();
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }
+
   return (
     <>
-    <TextArea placeholder={"在这里输入您的问题，然后点击右侧按钮发送"} style={TextAreaStyles} value={text} onChange={(e)=>setText(e.target.value)} />
+    <TextArea onPressEnter={onPressEnter} placeholder={"在这里输入您的问题，然后点击右侧按钮发送"} style={TextAreaStyles} value={text} onChange={(e)=>setText(e.target.value)} />
     <Button type="primary" style={{float:'right',margin:"5px 5px 5px 0px",height:"calc(100% - 10px)",width:45}} icon={<SendOutlined />} onClick={sendMessage}/>
     </>
   );
