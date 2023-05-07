@@ -4,6 +4,7 @@ import { SplitPane } from "react-collapse-pane";
 import ChatInput from './ChatInput';
 import ChatList from './ChatList';
 import { chatCompleteProxy } from '../../utils/gptfunctions';
+import { chatStreamCompleteProxy } from '../../utils/gptStream';
 
 import './index.css';
 
@@ -25,12 +26,32 @@ const initialRecords=[
   {content:initContent,role:'assistant',length:initContent.length,viewLength:0}
 ];  
 
+var gContent="";
+
 export default function Main(){
   const [records,setRecords]=useState(initialRecords);
 
   const refList = useRef();
 
   const onSend=(text)=>{
+    console.log('onSend');
+    let newRecords=[...records,{content:text,role:'user',viewLength:text.length,length:text.length}];
+    //如果newRecords中的记录数>20个，就仅保留最后的20个记录
+    if(newRecords.length>20){
+      newRecords=newRecords.slice(newRecords.length-20);
+    }
+    gContent="";
+    //将消息发送给openaiProxy
+    chatStreamCompleteProxy(newRecords,(text)=>{
+      console.log(text);
+      gContent+=text;
+      console.log(gContent);
+      setRecords([...newRecords,{content:gContent,role:'assistant',viewLength:gContent.length,length:gContent.length}]);
+    });
+    setRecords([...newRecords,{content:'正在处理您的请求，请稍等 ...',role:'assistant'}]);
+  }
+
+  const onSendSync=(text)=>{
     let newRecords=[...records,{content:text,role:'user',viewLength:text.length,length:text.length}];
     //如果newRecords中的记录数>20个，就仅保留最后的20个记录
     if(newRecords.length>20){

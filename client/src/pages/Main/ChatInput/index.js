@@ -19,6 +19,7 @@ export default function ChatInput({onSend}){
 
   const sendMessage=()=>{
     if(text.length>0){
+      console.log('sendMessage');
       onSend(text);
       setText('');
     }
