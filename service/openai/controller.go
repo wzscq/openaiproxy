@@ -102,7 +102,7 @@ func (opc *OpenAIProxyController)openAIChatStreamGPT4(c *gin.Context){
 	w.Header().Set("Connection", "keep-alive")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-  flusher, ok := w.(http.Flusher)
+  	flusher, ok := w.(http.Flusher)
 	if !ok {
 		log.Println("server not support") //浏览器不兼容
 		return
@@ -114,13 +114,17 @@ func (opc *OpenAIProxyController)openAIChatStreamGPT4(c *gin.Context){
 		fmt.Fprintf(w, "data: 参数错误\n\n")
 		fmt.Fprintf(w, "event: close")
 		return 
-  }
+  	}
 
 	fmt.Fprintf(w, "data: "+"test"+"\n\n");
 
 	sleepTime := 2
 	for i := 0; i < 10; i++ {
-		fmt.Fprintf(w, "data: "+"test");
+		//在log中输出变量i的值
+		log.Println("i: ", i)
+		log.Println("data: "+"test")
+		fmt.Fprintf(w, "data: "+"test\n\n");
+		flusher.Flush()
 		time.Sleep(time.Duration(sleepTime) * time.Second)
 	}
 	fmt.Fprintf(w, "event: close")

@@ -3,8 +3,8 @@ import { fetchEventSource,EventStreamContentType } from '@microsoft/fetch-event-
 class RetriableError extends Error { }
 class FatalError extends Error { }
 
-//const chatProxyApi=process.env.REACT_APP_OPENAI_HOST+"/openaiproxy/openai/chat/stream/GPT4";
-const chatProxyApi=process.env.REACT_APP_OPENAI_HOST+"/openai/chat/stream/GPT4";
+const chatProxyApi=process.env.REACT_APP_OPENAI_HOST+"/openaistreamproxy/openai/chat/stream/GPT4";
+//const chatProxyApi=process.env.REACT_APP_OPENAI_HOST+"/openai/chat/stream/GPT4";
 
 const chatStreamCompleteProxy=(messages,callBack)=>{
   console.log("chatStreamCompleteProxy");
