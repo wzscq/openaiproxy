@@ -17,6 +17,9 @@ type CommonError struct {
 const (
 	ResultSuccess = 10000000
 	ResultWrongRequest = 10000001
+	ResultSaveDataError = 10100010
+	ResultQueryRequestError = 10100007
+
 	ResultCreateOpenAiChatCompletionError = 90100001
 )
 
@@ -29,6 +32,16 @@ var errMsg = map[int]CommonRsp{
 	ResultWrongRequest:CommonRsp{
 		ErrorCode:ResultWrongRequest,
 		Message:"请求参数错误，请检查参数是否完整，参数格式是否正确",
+		Error:true,
+	},
+	ResultSaveDataError:CommonRsp{
+		ErrorCode:ResultSaveDataError,
+		Message:"保存数据到数据时发生错误，请与管理员联系处理",
+		Error:true,
+	},
+	ResultQueryRequestError:CommonRsp{
+		ErrorCode:ResultQueryRequestError,
+		Message:"下发参数时发送查询参数请求失败，请与管理员联系处理",
 		Error:true,
 	},
 	ResultCreateOpenAiChatCompletionError:CommonRsp{

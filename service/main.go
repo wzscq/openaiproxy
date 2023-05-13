@@ -7,6 +7,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"openaiproxy/common"
 	"openaiproxy/openai"
+	"openaiproxy/crv"
 )
 
 func main() {
@@ -35,8 +36,18 @@ func main() {
 		AllowCredentials: true,
 	}))
 
+	//crvClinet 用于到crvframeserver的请求
+	crvClinet:=&crv.CRVClient{
+		Server:conf.CRV.Server,
+		Token:conf.CRV.Token,
+		AppID:conf.CRV.AppID,
+	}
+
 	//初始化openai代理控制器
-	openaiProxyController:=openai.OpenAIProxyController{Key:conf.OpenAI.Key}
+	openaiProxyController:=openai.OpenAIProxyController{
+		Key:conf.OpenAI.Key,
+		CRVClient:crvClinet,
+	}
 
 	//绑定路由
 	openaiProxyController.Bind(router)

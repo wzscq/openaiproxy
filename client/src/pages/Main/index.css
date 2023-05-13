@@ -15,6 +15,54 @@
   font-weight: bold;
 }
 
+.chat-main .header .title {
+  float: left;
+}
+
+.chat-main .header .account {
+  margin-left: 20px;
+  float: left;
+  width: 300px;
+}
+
+.chat-main .header .password {
+  margin-left: 20px;
+  float: left;
+  width: 300px;
+}
+
+.chat-main .header .password .ant-input-password .ant-input {
+  background-color: #000000;
+  color: #afafaf;
+}
+
+.chat-main .header .model {
+  margin-left: 20px;
+  width: 200px;
+  float: left;
+}
+
+.chat-main .header .ant-select-single {
+  width: 100%;
+}
+
+.chat-main .header .model .ant-select-selector {
+  background-color: black;
+  color: #afafaf;
+}
+
+:where(.css-dev-only-do-not-override-mxhywb).ant-input-affix-wrapper .anticon.ant-input-password-icon {
+  color: #afafaf;
+}
+
+.chat-main .header .password input::placeholder {
+  color:#afafaf
+}
+
+.chat-main .header .account input::placeholder {
+  color:#afafaf
+}
+
 .chat-main .content {
   width: 100%;
   height: calc(100vh - 40px);

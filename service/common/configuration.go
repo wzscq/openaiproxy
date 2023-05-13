@@ -14,9 +14,18 @@ type openAIConf struct {
 	Key string `json:"key"`
 }
 
+type crvConf struct {
+	Server string `json:"server"`
+	User string `json:"user"`
+	Password string `json:"password"`
+	AppID string `json:"appID"`
+	Token string `json:"token"`
+}
+
 type Config struct {
 	Service serviceConf `json:"service"`
 	OpenAI openAIConf `json:"openai"`
+	CRV crvConf `json:"crv"`
 }
 
 var gConfig Config

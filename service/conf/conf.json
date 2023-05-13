@@ -2,6 +2,11 @@
   "service":{
     "port":"localhost:9180"
   },
+  "crv":{
+    "server":"http://1.15.91.60:8070/crvframeservice",
+    "appID":"gpt4rec",
+    "token":"gpt4rec"
+  },
   "openai":{
     "key":""
   }

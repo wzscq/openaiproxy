@@ -1,12 +1,14 @@
 import { fetchEventSource,EventStreamContentType } from '@microsoft/fetch-event-source';
 
+import {encodePassword} from './passwordEncoder';
+
 class RetriableError extends Error { }
 class FatalError extends Error { }
 
 const chatProxyApi=process.env.REACT_APP_OPENAI_HOST+"/openaistreamproxy/openai/chat/stream/GPT4";
 //const chatProxyApi=process.env.REACT_APP_OPENAI_HOST+"/openai/chat/stream/GPT4";
 
-const chatStreamCompleteProxy=(messages,callBack)=>{
+const chatStreamCompleteProxy=(messages,account,password,model,callBack)=>{
   console.log("chatStreamCompleteProxy");
   fetchEventSource(chatProxyApi, {
     method: 'POST',
@@ -15,7 +17,10 @@ const chatStreamCompleteProxy=(messages,callBack)=>{
     },
     body: JSON.stringify({
       maxTokens:2000,
-      messages:messages
+      messages:messages,
+      account:account,
+      model:model,
+      password:encodePassword(password)
     }),
     async onopen(response) {
       console.log("onopen");
@@ -43,7 +48,8 @@ const chatStreamCompleteProxy=(messages,callBack)=>{
         // do nothing to automatically retry. You can also
         // return a specific retry interval here.
       }
-    }
+    },
+    openWhenHidden: true
   });
 }
 
